@@ -4,9 +4,13 @@ import (
 	"design_pattern/1.iterator/book"
 )
 
+// Aggregate - operation interface collection
 type Aggregate interface {
-	Interator() Interator
+	Iterator() Iterator
+	Append(interface{})
 }
+
+// ========= other BookShelf =========
 
 // type BookShelf struct {
 // 	books string
@@ -24,11 +28,11 @@ type Aggregate interface {
 // 	return aBook
 // }
 
-// func (b *BookShelf) AppendBook(abook book.Book) {
+// func (b *BookShelf) Append(abook interface{}) {
 // 	if len(b.books) == 0 {
-// 		b.books = abook.GetName()
+// 		b.books = abook.(book.Book).GetName()
 // 	} else {
-// 		b.books = b.books + "," + abook.GetName()
+// 		b.books = b.books + "," + abook.(book.Book).GetName()
 // 	}
 // }
 
@@ -37,10 +41,13 @@ type Aggregate interface {
 // 	return len(s)
 // }
 
-// func (b *BookShelf) Interator() BookShelfIterator {
+// func (b *BookShelf) Iterator() Iterator {
 // 	i := &BookShelfIterator{}
-// 	return i.BookShelfIterator(b)
+// 	i.BookShelfIterator(b)
+// 	return i
 // }
+
+// ===================================
 
 type BookShelf struct {
 	books []book.Book
@@ -55,7 +62,7 @@ func (b *BookShelf) GetBookAt(index int) book.Book {
 	return b.books[index]
 }
 
-func (b *BookShelf) AppendBook(abook book.Book) {
+func (b *BookShelf) Append(abook interface{}) {
 	if b.GetLen() >= len(b.books) {
 		newBooks := make([]book.Book, b.last*2)
 		for index, item := range b.books {
@@ -63,16 +70,16 @@ func (b *BookShelf) AppendBook(abook book.Book) {
 		}
 		b.books = newBooks
 	}
-	b.books[b.last] = abook
+	b.books[b.last] = abook.(book.Book)
 	b.last++
-
 }
 
 func (b *BookShelf) GetLen() int {
 	return b.last
 }
 
-func (b *BookShelf) Interator() BookShelfIterator {
+func (b *BookShelf) Iterator() Iterator {
 	i := &BookShelfIterator{}
-	return i.BookShelfIterator(b)
+	i.BookShelfIterator(b)
+	return i
 }

@@ -1,6 +1,6 @@
 package model
 
-type Interator interface {
+type Iterator interface {
 	HasNext() bool
 	Next() interface{}
 }
