@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"design_pattern/1.iterator/book"
 	"design_pattern/1.iterator/model"
+	"design_pattern/1.iterator/model/book"
 )
 
 func main() {

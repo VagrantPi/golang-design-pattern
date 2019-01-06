@@ -1,12 +1,14 @@
 package model
 
 import (
-	"design_pattern/1.iterator/book"
+	"design_pattern/1.iterator/model/book"
 )
 
 // Aggregate - operation interface collection
 type Aggregate interface {
 	Iterator() Iterator
+	// 這邊會多個 Append 為了方便 Aggregate 的 instance(bookShelf) 可以直接使用 Append 這個 Method
+	// Iterator Pattern 並不存在 Append 的 interface
 	Append(interface{})
 }
 
