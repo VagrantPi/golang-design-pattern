@@ -1,9 +1,7 @@
 package model
 
 import (
-	"fmt"
-
-	"2-1.class_adapter/model/banner"
+	"2.adapter/model/banner"
 )
 
 type Print interface {
@@ -18,7 +16,6 @@ type PrintBanner struct {
 }
 
 func (b *PrintBanner) PrintBanner(s string) {
-	fmt.Printf("PrintBanner Address: %p\n", b)
 	b.Banner.Banner(s)
 }
 

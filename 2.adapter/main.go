@@ -1,7 +1,7 @@
 package main
 
 import (
-	"2-1.class_adapter/model"
+	"2.adapter/model"
 )
 
 func main() {

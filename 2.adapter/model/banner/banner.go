@@ -7,7 +7,6 @@ type Banner struct {
 }
 
 func (b *Banner) Banner(s string) {
-	fmt.Printf("Banner Address: %p\n", b)
 	b.bannerString = s
 }
 
