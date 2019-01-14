@@ -4,13 +4,8 @@ import (
 	"2.adapter/model/banner"
 )
 
-type Print interface {
-	PrintWeek()
-	PrintStrong()
-}
-
-// PrintBanner 繼承 Banner 並實作 Print
-// 因為 golang 中並沒有繼承，所以這邊使用 Embedding struct 來實作
+// PrintBanner - object adapter
+// 因為 golang 中並沒有繼承，所以這邊使用 composition(embedding struct) 來實作
 type PrintBanner struct {
 	banner.Banner
 }
