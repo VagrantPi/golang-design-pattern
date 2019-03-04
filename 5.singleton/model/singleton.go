@@ -1,6 +1,9 @@
 package model
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type singletonOP interface {
 	Count()
@@ -24,11 +27,12 @@ func (s *singleton) singleton() {
 }
 
 var instance *singleton
+var once sync.Once
 
 func GetInstance() *singleton {
-	if instance == nil {
+	once.Do(func() {
 		instance = &singleton{}
 		instance.singleton()
-	}
+	})
 	return instance
 }
